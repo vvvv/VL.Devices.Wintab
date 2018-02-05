@@ -1,0 +1,1443 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WintabDN</name>
+    </assembly>
+    <members>
+        <member name="T:WintabDN.CMemUtils">
+            <summary>
+            Provide utility methods for unmanaged memory management.
+            </summary>
+        </member>
+        <member name="M:WintabDN.CMemUtils.AllocUnmanagedBuf(System.Object)">
+            <summary>
+            Allocates a pointer to unmanaged heap memory of sizeof(val_I).
+            </summary>
+            <param name="val_I">managed object that determines #bytes of unmanaged buf</param>
+            <returns>Unmanaged buffer pointer.</returns>
+        </member>
+        <member name="M:WintabDN.CMemUtils.AllocUnmanagedBuf(System.Int32)">
+            <summary>
+            Allocates a pointer to unmanaged heap memory of given size.
+            </summary>
+            <param name="size_I">number of bytes to allocate</param>
+            <returns>Unmanaged buffer pointer.</returns>
+        </member>
+        <member name="M:WintabDN.CMemUtils.MarshalUnmanagedBuf``1(System.IntPtr,System.Int32)">
+            <summary>
+            Marshals specified buf to the specified type.
+            </summary>
+            <typeparam name="T">type to which buf_I is marshalled</typeparam>
+            <param name="buf_I">unmanaged heap pointer</param>
+            <param name="size">expected size of buf_I</param>
+            <returns>Managed object of specified type.</returns>
+        </member>
+        <member name="M:WintabDN.CMemUtils.FreeUnmanagedBuf(System.IntPtr)">
+            <summary>
+            Free unmanaged memory pointed to by buf_I.
+            </summary>
+            <param name="buf_I">pointer to unmanaged heap memory</param>
+        </member>
+        <member name="M:WintabDN.CMemUtils.MarshalUnmanagedString(System.IntPtr,System.Int32)">
+            <summary>
+            Marshals a string from an unmanaged buffer.
+            </summary>
+            <param name="buf_I">pointer to unmanaged heap memory</param>
+            <param name="size_I">size of ASCII string, includes null termination</param>
+            <returns></returns>
+        </member>
+        <member name="M:WintabDN.CMemUtils.MarshalDataPackets(System.UInt32,System.IntPtr)">
+            <summary>
+            Marshal unmanaged data packets into managed WintabPacket data.
+            </summary>
+            <param name="numPkts_I">number of packets to marshal</param>
+            <param name="buf_I">pointer to unmanaged heap memory containing data packets</param>
+            <returns></returns>
+            <summary>
+            Marshal unmanaged data packets into managed WintabPacket data.
+            </summary>
+            <param name="numPkts_I">number of packets to marshal</param>
+            <param name="buf_I">pointer to unmanaged heap memory containing data packets</param>
+            <returns></returns>
+        </member>
+        <member name="M:WintabDN.CMemUtils.MarshalDataExtPackets(System.UInt32,System.IntPtr)">
+            <summary>
+            Marshal unmanaged Extension data packets into managed WintabPacketExt data.
+            </summary>
+            <param name="numPkts_I">number of packets to marshal</param>
+            <param name="buf_I">pointer to unmanaged heap memory containing data packets</param>
+            <returns></returns>
+        </member>
+        <member name="T:WintabDN.WTExtensionsGlobal">
+            <summary>
+            Globals used for Wintab extensions.
+            </summary>
+        </member>
+        <member name="F:WintabDN.WTExtensionsGlobal.WTExtensionPropertyMaxDataBytes">
+            <summary>
+            Maximum size of data buffer used in WTExtensionProperty.
+            </summary>
+        </member>
+        <member name="T:WintabDN.EWTXExtensionTag">
+            <summary>
+            Tag values used to get extension masks in GetWTExtensionMask
+            </summary>
+        </member>
+        <member name="F:WintabDN.EWTXExtensionTag.WTX_TOUCHSTRIP">
+            <summary>
+            Touch Strip extension mask tag
+            </summary>
+        </member>
+        <member name="F:WintabDN.EWTXExtensionTag.WTX_TOUCHRING">
+            <summary>
+            Touch Ring extension mask tag
+            </summary>
+        </member>
+        <member name="F:WintabDN.EWTXExtensionTag.WTX_EXPKEYS2">
+            <summary>
+            Express Key extension mask tag
+            </summary>
+        </member>
+        <member name="T:WintabDN.EWTIExtensionIndex">
+            <summary>
+            Index values used for WTI extensions.
+            For more information, see Wintab 1.4.
+            </summary>
+        </member>
+        <member name="F:WintabDN.EWTIExtensionIndex.EXT_NAME">
+            <summary>
+            Get a unique, null-terminated string describing the extension.
+            </summary>
+        </member>
+        <member name="F:WintabDN.EWTIExtensionIndex.EXT_TAG">
+            <summary>
+            Get a unique identifier for the extension.
+            </summary>
+        </member>
+        <member name="F:WintabDN.EWTIExtensionIndex.EXT_MASK">
+            <summary>
+            Get a mask that can be bitwise OR'ed with WTPKT-type variables to select the extension.
+            </summary>
+        </member>
+        <member name="F:WintabDN.EWTIExtensionIndex.EXT_SIZE">
+            <summary>
+            Get an array of two UINTs specifying the extension's size within a packet (in bytes). The first is for absolute mode; the second is for relative mode.
+            </summary>
+        </member>
+        <member name="F:WintabDN.EWTIExtensionIndex.EXT_AXES">
+            <summary>
+            Get an array of axis descriptions, as needed for the extension.
+            </summary>
+        </member>
+        <member name="F:WintabDN.EWTIExtensionIndex.EXT_DEFAULT">
+            <summary>
+            get the current global default data, as needed for the extension. 
+            </summary>
+        </member>
+        <member name="F:WintabDN.EWTIExtensionIndex.EXT_DEFCONTEXT">
+            <summary>
+            Get the current default digitizing context-specific data, as needed for the extension.
+            </summary>
+        </member>
+        <member name="F:WintabDN.EWTIExtensionIndex.EXT_DEFSYSCTX">
+            <summary>
+            Get the current default system context-specific data, as needed for the extension.
+            </summary>
+        </member>
+        <member name="F:WintabDN.EWTIExtensionIndex.EXT_CURSORS">
+            <summary>
+            Get a byte array of the current default cursor-specific data, as need for the extension. 
+            </summary>
+        </member>
+        <member name="F:WintabDN.EWTIExtensionIndex.EXT_DEVICES">
+            <summary>
+            Allow 100 cursors
+            </summary>
+        </member>
+        <member name="F:WintabDN.EWTIExtensionIndex.EXT_MAX">
+            <summary>
+            Allow 100 devices
+            </summary>
+        </member>
+        <member name="T:WintabDN.EWTExtensionTabletProperty">
+            <summary>
+            Tablet property values used with WTExtGet and WTExtSet
+            </summary>
+        </member>
+        <member name="F:WintabDN.EWTExtensionTabletProperty.TABLET_PROPERTY_CONTROLCOUNT">
+            <summary>
+            number of physical controls on tablet
+            </summary>
+        </member>
+        <member name="F:WintabDN.EWTExtensionTabletProperty.TABLET_PROPERTY_FUNCCOUNT">
+            <summary>
+            number of functions of control
+            </summary>
+        </member>
+        <member name="F:WintabDN.EWTExtensionTabletProperty.TABLET_PROPERTY_AVAILABLE">
+            <summary>
+            control/mode is available for override
+            </summary>
+        </member>
+        <member name="F:WintabDN.EWTExtensionTabletProperty.TABLET_PROPERTY_MIN">
+            <summary>
+            minimum value of control function
+            </summary>
+        </member>
+        <member name="F:WintabDN.EWTExtensionTabletProperty.TABLET_PROPERTY_MAX">
+            <summary>
+            maximum value of control function
+            </summary>
+        </member>
+        <member name="F:WintabDN.EWTExtensionTabletProperty.TABLET_PROPERTY_OVERRIDE">
+            <summary>
+            Indicates control should be overriden
+            </summary>
+        </member>
+        <member name="F:WintabDN.EWTExtensionTabletProperty.TABLET_PROPERTY_OVERRIDE_NAME">
+            <summary>
+             UTF8 encoded displayable name when control is overridden
+            </summary>
+        </member>
+        <member name="F:WintabDN.EWTExtensionTabletProperty.TABLET_PROPERTY_OVERRIDE_ICON">
+            <summary>
+            PNG icon image to shown when control is overriden (supported only tablets with display OLEDs; eg: Intuos4)
+            </summary>
+        </member>
+        <member name="F:WintabDN.EWTExtensionTabletProperty.TABLET_PROPERTY_ICON_WIDTH">
+            <summary>
+            Pixel width of icon display
+            </summary>
+        </member>
+        <member name="F:WintabDN.EWTExtensionTabletProperty.TABLET_PROPERTY_ICON_HEIGHT">
+            <summary>
+            Pixel height of icon display
+            </summary>
+        </member>
+        <member name="F:WintabDN.EWTExtensionTabletProperty.TABLET_PROPERTY_ICON_FORMAT">
+            <summary>
+            Pixel format of icon display (see TABLET_ICON_FMT_*)
+            </summary>
+        </member>
+        <member name="F:WintabDN.EWTExtensionTabletProperty.TABLET_PROPERTY_LOCATION">
+            <summary>
+            Physical location of control (see TABLET_LOC_*)
+            </summary>
+        </member>
+        <member name="T:WintabDN.EWTExtensionIconProperty">
+            <summary>
+            Tablet Icon values used with WTExtGet and WTExtSet
+            </summary>
+        </member>
+        <member name="F:WintabDN.WTExtensionPropertyBase.version">
+            <summary>
+            Structure version (reserved: always 0 for now)
+            </summary>
+        </member>
+        <member name="F:WintabDN.WTExtensionPropertyBase.tabletIndex">
+            <summary>
+            0-based index for tablet
+            </summary>
+        </member>
+        <member name="F:WintabDN.WTExtensionPropertyBase.controlIndex">
+            <summary>
+            0-based index for control 
+            </summary>
+        </member>
+        <member name="F:WintabDN.WTExtensionPropertyBase.functionIndex">
+            <summary>
+            0-based index for control's sub-function
+            </summary>
+        </member>
+        <member name="F:WintabDN.WTExtensionPropertyBase.propertyID">
+            <summary>
+            ID of property being set (see EWTExtensionTabletProperty)
+            </summary>
+        </member>
+        <member name="F:WintabDN.WTExtensionPropertyBase.reserved">
+            <summary>
+            Alignment padding (reserved)
+            </summary>
+        </member>
+        <member name="F:WintabDN.WTExtensionPropertyBase.dataSize">
+            <summary>
+            Number of bytes in data[] buffer
+            </summary>
+        </member>
+        <member name="T:WintabDN.WTExtensionProperty">
+            <summary>
+            Structure for reading/writing non-image Wintab extension data. (Wintab 1.4)
+            </summary>
+        </member>
+        <member name="F:WintabDN.WTExtensionProperty.data">
+            <summary>
+            Non-image data being written/read through the extensions API.
+            A small buffer is sufficient.
+            </summary>
+        </member>
+        <member name="T:WintabDN.WTExtensionImageProperty">
+            <summary>
+            Structure read/writing image Wintab extension data. (Wintab 1.4)
+            </summary>
+        </member>
+        <member name="F:WintabDN.WTExtensionImageProperty.data">
+            <summary>
+            Image data being written through the extensions API.
+            A large buffer is needed.
+            </summary>
+        </member>
+        <member name="T:WintabDN.CWintabExtensions">
+            <summary>
+            API for Wintab extensions functionality (Wintab 1.4).
+            
+            Wintab Extensions provides support for overriding tablet control functionality with
+            functionality provided by an application. The tablet controls that can be 
+            overriden with extensions are: Express Keys, Touch Rings and Touch Strips.
+            
+            For example, an application can respond to an Express Key button press by
+            defining what action should occur within that application when the button is pressed.
+            Similarly, an application can define actions for Touch Ring and Touch Strip button
+            modes, and respond to user swipes on those controls to provide customized behavior.
+            </summary>
+        </member>
+        <member name="M:WintabDN.CWintabExtensions.GetWTExtensionMask(WintabDN.EWTXExtensionTag)">
+            <summary>
+            Return the extension mask for the given tag.
+            </summary>
+            <param name="tag_I">type of extension being searched for</param>
+            <returns>0xFFFFFFFF on error</returns>
+        </member>
+        <member name="M:WintabDN.CWintabExtensions.FindWTExtensionIndex(WintabDN.EWTXExtensionTag)">
+            <summary>
+            Returns extension index tag for given tag, if possible.
+            </summary>
+            <param name="tag_I">type of extension being searched for</param>
+            <returns>0xFFFFFFFF on error</returns>
+        </member>
+        <member name="M:WintabDN.CWintabExtensions.ControlPropertyGet(WintabDN.HCTX,System.Byte,System.Byte,System.Byte,System.Byte,System.UInt16,System.UInt32@)">
+            <summary>
+            Get a property value from an extension.
+            </summary>
+            <param name="context_I">Wintab context</param>
+            <param name="extTagIndex_I">extension index tag</param>
+            <param name="tabletIndex_I">tablet index</param>
+            <param name="controlIndex_I">control index on the tablet</param>
+            <param name="functionIndex_I">function index on the control</param>
+            <param name="propertyID_I">ID of the property requested</param>
+            <param name="result_O">value of the property requested</param>
+            <returns>true if property obtained</returns>
+        </member>
+        <member name="M:WintabDN.CWintabExtensions.ControlPropertySet(WintabDN.HCTX,System.Byte,System.Byte,System.Byte,System.Byte,System.UInt16,System.UInt32)">
+            <summary>
+            Sets an extension control property value.
+            </summary>
+            <param name="context_I">wintab context</param>
+            <param name="extTagIndex_I">which extension tag we're setting</param>
+            <param name="tabletIndex_I">index of the tablet being set</param>
+            <param name="controlIndex_I">the index of the control being set</param>
+            <param name="functionIndex_I">the index of the control function being set</param>
+            <param name="propertyID_I">ID of the property being set</param>
+            <param name="value_I">value of the property being set</param>
+            <returns>true if successful</returns>
+        </member>
+        <member name="M:WintabDN.CWintabExtensions.ControlPropertySet(WintabDN.HCTX,System.Byte,System.Byte,System.Byte,System.Byte,System.UInt16,System.String)">
+            <summary>
+            Sets an extension control property string.
+            </summary>
+            <param name="context_I">wintab context</param>
+            <param name="extTagIndex_I">which extension tag we're setting</param>
+            <param name="tabletIndex_I">index of the tablet being set</param>
+            <param name="controlIndex_I">the index of the control being set</param>
+            <param name="functionIndex_I">the index of the control function being set</param>
+            <param name="propertyID_I">ID of the property being set</param>
+            <param name="value_I">value of the property being set (a string)</param>
+            <returns>true if successful</returns>
+        </member>
+        <member name="M:WintabDN.CWintabExtensions.ControlPropertySetImage(WintabDN.HCTX,System.Byte,System.Byte,System.Byte,System.Byte,System.UInt16,System.String)">
+            <summary>
+            Sets an extension control property image (if supported by tablet).
+            </summary>
+            <param name="context_I">wintab context</param>
+            <param name="extTagIndex_I">which extension tag we're setting</param>
+            <param name="tabletIndex_I">index of the tablet being set</param>
+            <param name="controlIndex_I">the index of the control being set</param>
+            <param name="functionIndex_I">the index of the control function being set</param>
+            <param name="propertyID_I">ID of the property being set</param>
+            <param name="value_I">value of the property being set (a string)</param>
+            <returns>true if successful</returns>
+        </member>
+        <member name="M:WintabDN.CWintabExtensions.SetDisplayProperty(WintabDN.CWintabContext,WintabDN.EWTXExtensionTag,System.UInt32,System.UInt32,System.UInt32,System.String)">
+            <summary>
+            Set tablet OLED display property.
+            </summary>
+            <param name="context_I">wintab context</param>
+            <param name="extTagIndex_I">which extension tag we're setting</param>
+            <param name="tabletIndex_I">index of the tablet being set</param>
+            <param name="controlIndex_I">the index of the control being set</param>
+            <param name="functionIndex_I">the index of the control function being set</param>
+            <param name="imageFilePath_I">path to PNG image file</param>
+            <returns>true if successful and tablet supports property</returns>
+        </member>
+        <member name="M:WintabDN.CWintabExtensions.SetIcon(WintabDN.CWintabContext,WintabDN.EWTXExtensionTag,System.UInt32,System.UInt32,System.UInt32,System.String)">
+            <summary>
+            Write out an image to a tablet's OLED (Organic Light Emitting Diode)
+            if supported by the tablet (eg: Intuos4).
+            </summary>
+            <param name="context_I">wintab context</param>
+            <param name="extTagIndex_I">which extension tag we're setting</param>
+            <param name="tabletIndex_I">index of the tablet being set</param>
+            <param name="controlIndex_I">the index of the control being set</param>
+            <param name="functionIndex_I">the index of the control function being set</param>
+            <param name="imageFilePath_I">path to PNG image file</param>
+        </member>
+        <member name="T:WintabDN.HWND">
+            <summary>
+            Managed implementation of Wintab HWND typedef. 
+            Holds native Window handle.
+            </summary>
+        </member>
+        <member name="T:WintabDN.WTPKT">
+            <summary>
+            Managed implementation of Wintab WTPKT typedef.
+            Holds Wintab packet identifier.
+            </summary>
+        </member>
+        <member name="T:WintabDN.FIX32">
+            <summary>
+            Managed implementation of Wintab FIX32 typedef.
+            Used for a fixed-point arithmetic value.
+            </summary>
+        </member>
+        <member name="T:WintabDN.HCTX">
+            <summary>
+            Managed implementation of Wintab HCTX typedef.
+            Holds a Wintab context identifier.
+            </summary>
+        </member>
+        <member name="T:WintabDN.EWTICategoryIndex">
+            <summary>
+            Index values for WTInfo wCategory parameter.
+            </summary>
+        </member>
+        <member name="T:WintabDN.EWTIInterfaceIndex">
+            <summary>
+            Index values for WTI_INTERFACE.
+            </summary>
+        </member>
+        <member name="T:WintabDN.EWTIDevicesIndex">
+            <summary>
+            Index values for WTI_DEVICES
+            </summary>
+        </member>
+        <member name="T:WintabDN.EWTICursorsIndex">
+            <summary>
+            Index values for WTI_CURSORS.
+            </summary>
+        </member>
+        <member name="T:WintabDN.EWTICursorNameIndex">
+            <summary>
+            Index used with CSR_NAME to get stylus types.
+            </summary>
+        </member>
+        <member name="T:WintabDN.EWTIContextIndex">
+            <summary>
+            Index values for WTI contexts.
+            </summary>
+        </member>
+        <member name="T:WintabDN.CWintabFuncs">
+            <summary>
+            P/Invoke wrappers for Wintab functions.
+            See Wintab_v140.doc (Wintab 1.4 spec) and related Wintab documentation for details.
+            </summary>
+        </member>
+        <member name="M:WintabDN.CWintabFuncs.WTInfo(System.UInt32,System.UInt32,System.IntPtr)">
+            <summary>
+            This function returns global information about the interface in an application-supplied buffer. 
+            Different types of information are specified by different index arguments. Applications use this 
+            function to receive information about tablet coordinates, physical dimensions, capabilities, and 
+            cursor types.
+            </summary>
+            <param name="wCategory_I">Identifies the category from which information is being requested.</param>
+            <param name="nIndex_I">Identifies which information is being requested from within the category.</param>
+            <param name="lpOutput_O">Points to a buffer to hold the requested information.</param>
+            <returns>The return value specifies the size of the returned information in bytes. If the information 
+            is not supported, the function returns zero. If a tablet is not physically present, this function 
+            always returns zero.
+            </returns>
+        </member>
+        <member name="M:WintabDN.CWintabFuncs.WTOpen(System.IntPtr,WintabDN.WintabLogContext@,System.Boolean)">
+            <summary>
+            This function establishes an active context on the tablet. On successful completion of this function, 
+            the application may begin receiving tablet events via messages (if they were requested), and may use 
+            the handle returned to poll the context, or to perform other context-related functions.
+            </summary>
+            <param name="hWnd_I">Identifies the window that owns the tablet context, and receives messages from the context.</param>
+            <param name="logContext_I">Points to an application-provided WintabLogContext data structure describing the context to be opened.</param>
+            <param name="enable_I">Specifies whether the new context will immediately begin processing input data.</param>
+            <returns>The return value identifies the new context. It is NULL if the context is not opened.</returns>
+        </member>
+        <member name="M:WintabDN.CWintabFuncs.WTClose(System.IntPtr)">
+            <summary>
+            This function closes and destroys the tablet context object.
+            </summary>
+            <param name="hctx_I">Identifies the context to be closed.</param>
+            <returns>The function returns a non-zero value if the context was valid and was destroyed. Otherwise, it returns zero.</returns>
+        </member>
+        <member name="M:WintabDN.CWintabFuncs.WTEnable(System.IntPtr,System.Boolean)">
+            <summary>
+            This function enables or disables a tablet context, temporarily turning on or off the processing of packets.
+            </summary>
+            <param name="hctx_I">Identifies the context to be enabled or disabled.</param>
+            <param name="enable_I">Specifies enabling if non-zero, disabling if zero.</param>
+            <returns>The function returns true if the enable or disable request was satisfied.</returns>
+        </member>
+        <member name="M:WintabDN.CWintabFuncs.WTOverlap(System.IntPtr,System.Boolean)">
+            <summary>
+            This function sends a tablet context to the top or bottom of the order of overlapping tablet contexts.
+            </summary>
+            <param name="hctx_I">Identifies the context to move within the overlap order.</param>
+            <param name="toTop_I">Specifies sending the context to the top of the overlap order true, or to the bottom if false.</param>
+            <returns>The function returns true if successful.</returns>
+        </member>
+        <member name="M:WintabDN.CWintabFuncs.WTQueueSizeGet(System.IntPtr)">
+            <summary>
+            This function returns the number of packets the context's queue can hold.
+            </summary>
+            <param name="hctx_I">Identifies the context whose queue size is being returned.</param>
+            <returns>The number of packets the queue can hold.</returns>
+        </member>
+        <member name="M:WintabDN.CWintabFuncs.WTQueueSizeSet(System.IntPtr,System.UInt32)">
+            <summary>
+            This function attempts to change the context's queue size to the value specified in nPkts_I.
+            </summary>
+            <param name="hctx_I">Identifies the context whose queue size is being set.</param>
+            <param name="nPkts_I">Specifies the requested queue size.</param>
+            <returns>The return value is true if the queue size was successfully changed.</returns>
+        </member>
+        <member name="M:WintabDN.CWintabFuncs.WTPacket(System.IntPtr,System.UInt32,System.IntPtr)">
+            <summary>
+            This function fills in the passed pktBuf_O buffer with the context event packet having 
+            the specified serial number. The returned packet and any older packets are removed from 
+            the context's internal queue.
+            </summary>
+            <param name="hctx_I">Identifies the context whose packets are being returned.</param>
+            <param name="pktSerialNum_I">Serial number of the tablet event to return.</param>
+            <param name="pktBuf_O">Buffer to receive the event packet.</param>
+            <returns>The return value is true if the specified packet was found and returned. 
+            It is false if the specified packet was not found in the queue.</returns>
+        </member>
+        <member name="M:WintabDN.CWintabFuncs.WTPacketsGet(System.IntPtr,System.UInt32,System.IntPtr)">
+            <summary>
+            This function copies the next maxPkts_I events from the packet queue of context hCtx to 
+            the passed pktBuf_O buffer and removes them from the queue
+            </summary>
+            <param name="hctx_I">Identifies the context whose packets are being returned.</param>
+            <param name="maxPkts_I">Specifies the maximum number of packets to return</param>
+            <param name="pktBuf_O">Buffer to receive the event packets.</param>
+            <returns>The return value is the number of packets copied in the buffer.</returns>
+        </member>
+        <member name="M:WintabDN.CWintabFuncs.WTDataGet(System.IntPtr,System.UInt32,System.UInt32,System.UInt32,System.IntPtr,System.UInt32@)">
+            <summary>A
+            This function copies all packets with Identifiers between pktIDStart_I and pktIDEnd_I 
+            inclusive from the context's queue to the passed buffer and removes them from the queue.
+            </summary>
+            <param name="hctx_I">Identifies the context whose packets are being returned.</param>
+            <param name="pktIDStart_I">Identifier of the oldest tablet event to return.</param>
+            <param name="pktIDEnd_I">Identifier of the newest tablet event to return.</param>
+            <param name="maxPkts_I">Specifies the maximum number of packets to return.</param>
+            <param name="pktBuf_O">Buffer to receive the event packets.</param>
+            <param name="numPkts_O">Number of packets actually copied.</param>
+            <returns>The return value is the total number of packets found in the queue 
+            between pktIDStart_I and pktIDEnd_I.</returns>
+        </member>
+        <member name="M:WintabDN.CWintabFuncs.WTDataPeek(System.IntPtr,System.UInt32,System.UInt32,System.UInt32,System.IntPtr,System.UInt32@)">
+            <summary>
+            This function copies all packets with serial numbers between pktIDStart_I and pktIDEnd_I
+            inclusive, from the context's queue to the passed buffer without removing them from the queue.
+            </summary>
+            <param name="hctx_I">Identifies the context whose packets are being read.</param>
+            <param name="pktIDStart_I">Identifier of the oldest tablet event to return.</param>
+            <param name="pktIDEnd_I">Identifier of the newest tablet event to return.</param>
+            <param name="maxPkts_I">Specifies the maximum number of packets to return.</param>
+            <param name="pktBuf_O">Buffer to receive the event packets.</param>
+            <param name="numPkts_O">Number of packets actually copied.</param>
+            <returns>The return value is the total number of packets found in the queue between 
+            pktIDStart_I and pktIDEnd_I.</returns>
+        </member>
+        <member name="M:WintabDN.CWintabFuncs.WTQueuePacketsEx(System.IntPtr,System.UInt32@,System.UInt32@)">
+            <summary>
+            This function returns the identifiers of the oldest and newest packets currently in the queue.
+            </summary>
+            <param name="hctx_I">Identifies the context whose queue is being queried.</param>
+            <param name="pktIDOldest_O">Identifier of the oldest packet in the queue.</param>
+            <param name="pktIDNewest_O">Identifier of the newest packet in the queue.</param>
+            <returns>This function returns bool if successful.</returns>
+        </member>
+        <member name="M:WintabDN.CWintabFuncs.WTExtGet(System.IntPtr,System.UInt32,System.IntPtr)">
+            <summary>
+            This function retrieves any context-specific data for an extension.
+            </summary>
+            <param name="hctx_I">Identifies the context whose extension attributes are being retrieved.</param>
+            <param name="extTag_I">Identifies the extension tag for which context-specific data is being retrieved.</param>
+            <param name="extData_O">Points to a buffer to hold retrieved data (WTExtensionProperty).</param>
+            <returns></returns>
+        </member>
+        <member name="M:WintabDN.CWintabFuncs.WTExtSet(System.IntPtr,System.UInt32,System.IntPtr)">
+            <summary>
+            This function sets any context-specific data for an extension.
+            </summary>
+            <param name="hctx_I">Identifies the context whose extension attributes are being modified.</param>
+            <param name="extTag_I">Identifies the extension tag for which context-specific data is being modified.</param>
+            <param name="extData_I">Points to the new data (WTExtensionProperty).</param>
+            <returns></returns>
+        </member>
+        <member name="T:WintabDN.WintabAxis">
+            <summary>
+            Managed version of AXIS struct.
+            </summary>
+        </member>
+        <member name="F:WintabDN.WintabAxis.axMin">
+            <summary>
+            Specifies the minimum value of the data item in the tablet's na-tive coordinates.
+            </summary>
+        </member>
+        <member name="F:WintabDN.WintabAxis.axMax">
+            <summary>
+            Specifies the maximum value of the data item in the tablet's na-tive coordinates.
+            </summary>
+        </member>
+        <member name="F:WintabDN.WintabAxis.axUnits">
+            <summary>
+            Indicates the units used in calculating the resolution for the data item.
+            </summary>
+        </member>
+        <member name="F:WintabDN.WintabAxis.axResolution">
+            <summary>
+            Is a fixed-point number giving the number of data item incre-ments per physical unit.
+            </summary>
+        </member>
+        <member name="T:WintabDN.WintabAxisArray">
+            <summary>
+            Array of WintabAxis objects.
+            </summary>
+        </member>
+        <member name="T:WintabDN.EAxisDimension">
+            <summary>
+            Values to use when asking for X, Y or Z WintabAxis object.
+            </summary>
+        </member>
+        <member name="T:WintabDN.ECTXOptionValues">
+            <summary>
+            Context option values.
+            </summary>
+        </member>
+        <member name="T:WintabDN.ECTXStatusValues">
+            <summary>
+            Context status values.
+            </summary>
+        </member>
+        <member name="T:WintabDN.ECTXLockValues">
+            <summary>
+            Context lock values.
+            </summary>
+        </member>
+        <member name="T:WintabDN.WintabLogContext">
+            <summary>
+            Managed version of Wintab LOGCONTEXT struct.  This structure determines what events an 
+            application will get, how they will be processed, and how they will be delivered to the 
+            application or to Windows itself.
+            </summary>
+        </member>
+        <member name="T:WintabDN.CWintabContext">
+            <summary>
+            Class to support access to Wintab context management.
+            </summary>
+        </member>
+        <member name="M:WintabDN.CWintabContext.#ctor">
+            <summary>
+            Default constructor sets all data bits to be captured.
+            </summary>
+        </member>
+        <member name="M:WintabDN.CWintabContext.Open(WintabDN.HWND,System.Boolean)">
+            <summary>
+            Open a Wintab context to the specified hwnd.
+            </summary>
+            <param name="hwnd_I">parent window for the context</param>
+            <param name="enable_I">true to enable, false to disable</param>
+            <returns>Returns non-zero context handle if successful.</returns>
+        </member>
+        <member name="M:WintabDN.CWintabContext.Open">
+            <summary>
+            Open a Wintab context that will send packet events to a message window.
+            </summary>
+            <returns>Returns true if successful.</returns>
+        </member>
+        <member name="M:WintabDN.CWintabContext.Close">
+            <summary>
+            Close the context for this object.
+            </summary>
+            <returns>true if context successfully closed</returns>
+        </member>
+        <member name="M:WintabDN.CWintabContext.Enable(System.Boolean)">
+            <summary>
+            Enable/disable this Wintab context.
+            </summary>
+            <param name="enable_I">true = enable</param>
+            <returns>Returns true if completed successfully</returns>
+        </member>
+        <member name="M:WintabDN.CWintabContext.SetOverlapOrder(System.Boolean)">
+            <summary>
+            Sends a tablet context to the top or bottom of the order of overlapping tablet contexts
+            </summary>
+            <param name="toTop_I">true = send tablet to top of order</param>
+            <returns>Returns true if successsful</returns>
+        </member>
+        <member name="P:WintabDN.CWintabContext.LogContext">
+            <summary>
+            Logical Wintab context managed by this object.  
+            </summary>
+        </member>
+        <member name="P:WintabDN.CWintabContext.HCtx">
+            <summary>
+            Handle (identifier) used to identify this context.
+            </summary>
+        </member>
+        <member name="P:WintabDN.CWintabContext.Name">
+            <summary>
+            Get/Set context name.
+            </summary>
+        </member>
+        <member name="P:WintabDN.CWintabContext.Options">
+            <summary>
+            Specifies options for the context. These options can be 
+            combined by using the bitwise OR operator. The lcOptions 
+            field can be any combination of the values defined in 
+            ECTXOptionValues.
+            </summary>
+        </member>
+        <member name="P:WintabDN.CWintabContext.Status">
+            <summary>
+            Specifies current status conditions for the context. 
+            These conditions can be combined by using the bitwise OR 
+            operator. The lcStatus field can be any combination of 
+            the values defined in ECTXStatusValues.
+            </summary>
+        </member>
+        <member name="P:WintabDN.CWintabContext.Locks">
+            <summary>
+            Specifies which attributes of the context the application 
+            wishes to be locked. Lock conditions specify attributes 
+            of the context that cannot be changed once the context 
+            has been opened (calls to WTConfig will have no effect 
+            on the locked attributes). The lock conditions can be 
+            combined by using the bitwise OR operator. The lcLocks 
+            field can be any combination of the values defined in 
+            ECTXLockValues. Locks can only be changed by the task 
+            or process that owns the context.
+            </summary>
+        </member>
+        <member name="P:WintabDN.CWintabContext.MsgBase">
+            <summary>
+            Specifies the range of message numbers that will be used for 
+            reporting the activity of the context. 
+            </summary>
+        </member>
+        <member name="P:WintabDN.CWintabContext.Device">
+            <summary>
+            Specifies the device whose input the context processes.
+            </summary>
+        </member>
+        <member name="P:WintabDN.CWintabContext.PktRate">
+            <summary>
+            Specifies the desired packet report rate in Hertz. Once the con-text is opened, this field will 
+            contain the actual report rate.
+            </summary>
+        </member>
+        <member name="P:WintabDN.CWintabContext.PktData">
+            <summary>
+            Specifies which optional data items will be in packets returned from the context. Requesting 
+            unsupported data items will cause Open() to fail.
+            </summary>
+        </member>
+        <member name="P:WintabDN.CWintabContext.PktMode">
+            <summary>
+            Specifies whether the packet data items will be returned in absolute or relative mode. If the item's 
+            bit is set in this field, the item will be returned in relative mode. Bits in this field for items not 
+            selected in the PktData property will be ignored.  Bits for data items that only allow one mode (such 
+            as the packet identifier) will also be ignored.        
+            </summary>
+        </member>
+        <member name="P:WintabDN.CWintabContext.MoveMask">
+            <summary>
+            Specifies which packet data items can generate move events in the context. Bits for items that 
+            are not part of the packet definition in the PktData property will be ignored. The bits for buttons, 
+            time stamp, and the packet identifier will also be ignored. In the case of overlapping contexts, movement 
+            events for data items not selected in this field may be processed by underlying contexts.
+            </summary>
+        </member>
+        <member name="P:WintabDN.CWintabContext.BtnDnMask">
+            <summary>
+            Specifies the buttons for which button press events will be processed in the context. In the case of 
+            overlapping contexts, button press events for buttons that are not selected in this field may be 
+            processed by underlying contexts.
+            </summary>
+        </member>
+        <member name="P:WintabDN.CWintabContext.BtnUpMask">
+            <summary>
+            Specifies the buttons for which button release events will be processed in the context. In the case 
+            of overlapping contexts, button release events for buttons that are not selected in this field may be 
+            processed by underlying contexts.  If both press and release events are selected for a button (see the 
+            BtnDnMask property), then the interface will cause the context to implicitly capture all tablet events 
+            while the button is down. In this case, events occurring outside the context will be clipped to the 
+            context and processed as if they had occurred in the context. When the button is released, the context 
+            will receive the button release event, and then event processing will return to normal.
+            </summary>
+        </member>
+        <member name="P:WintabDN.CWintabContext.InOrgX">
+            <summary>
+            Specifies the X origin of the context's input area in the tablet's native coordinates. Value is clipped 
+            to the tablet native coordinate space when the context is opened or modified.
+            </summary>
+        </member>
+        <member name="P:WintabDN.CWintabContext.InOrgY">
+            <summary>
+            Specifies the Y origin of the context's input area in the tablet's native coordinates. Value is clipped 
+            to the tablet native coordinate space when the context is opened or modified.
+            </summary>
+        </member>
+        <member name="P:WintabDN.CWintabContext.InOrgZ">
+            <summary>
+            Specifies the Z origin of the context's input area in the tablet's native coordinates. Value is clipped 
+            to the tablet native coordinate space when the context is opened or modified.
+            </summary>
+        </member>
+        <member name="P:WintabDN.CWintabContext.InExtX">
+            <summary>
+            Specifies the X extent of the context's input area in the tablet's native coordinates. Value is clipped 
+            to the tablet native coordinate space when the context is opened or modified.
+            </summary>
+        </member>
+        <member name="P:WintabDN.CWintabContext.InExtY">
+            <summary>
+            Specifies the Y extent of the context's input area in the tablet's native coordinates. Value is clipped 
+            to the tablet native coordinate space when the context is opened or modified. 
+            </summary>
+        </member>
+        <member name="P:WintabDN.CWintabContext.InExtZ">
+            <summary>
+            Specifies the Z extent of the context's input area in the tablet's native coordinates. Value is clipped 
+            to the tablet native coordinate space when the context is opened or modified. 
+            </summary>
+        </member>
+        <member name="P:WintabDN.CWintabContext.OutOrgX">
+            <summary>
+            Specifies the X origin of the context's output area in context output coordinates.  Value is used in 
+            coordinate scaling for absolute mode only.
+            </summary>
+        </member>
+        <member name="P:WintabDN.CWintabContext.OutOrgY">
+            <summary>
+            Specifies the Y origin of the context's output area in context output coordinates.  Value is used in 
+            coordinate scaling for absolute mode only.
+            </summary>
+        </member>
+        <member name="P:WintabDN.CWintabContext.OutOrgZ">
+            <summary>
+            Specifies the Z origin of the context's output area in context output coordinates.  Value is used in 
+            coordinate scaling for absolute mode only.
+            </summary>
+        </member>
+        <member name="P:WintabDN.CWintabContext.OutExtX">
+            <summary>
+            Specifies the X extent of the context's output area in context output coordinates.  Value is used 
+            in coordinate scaling for absolute mode only.
+            </summary>
+        </member>
+        <member name="P:WintabDN.CWintabContext.OutExtY">
+            <summary>
+            Specifies the Y extent of the context's output area in context output coordinates.  Value is used 
+            in coordinate scaling for absolute mode only.
+            </summary>
+        </member>
+        <member name="P:WintabDN.CWintabContext.OutExtZ">
+            <summary>
+            Specifies the Z extent of the context's output area in context output coordinates.  Value is used 
+            in coordinate scaling for absolute mode only.
+            </summary>
+        </member>
+        <member name="P:WintabDN.CWintabContext.SensX">
+            <summary>
+            Specifies the relative-mode sensitivity factor for the x axis.
+            </summary>
+        </member>
+        <member name="P:WintabDN.CWintabContext.SensY">
+            <summary>
+            Specifies the relative-mode sensitivity factor for the y axis.
+            </summary>
+        </member>
+        <member name="P:WintabDN.CWintabContext.SensZ">
+            <summary>
+            Specifies the relative-mode sensitivity factor for the Z axis.
+            </summary>
+        </member>
+        <member name="P:WintabDN.CWintabContext.SysMode">
+            <summary>
+            Specifies the system cursor tracking mode. Zero specifies absolute; non-zero means relative.
+            </summary>
+        </member>
+        <member name="P:WintabDN.CWintabContext.SysOrgX">
+            <summary>
+            Specifies the X origin of the screen mapping area for system cursor tracking, in screen coordinates.
+            </summary>
+        </member>
+        <member name="P:WintabDN.CWintabContext.SysOrgY">
+            <summary>
+            Specifies the Y origin of the screen mapping area for system cursor tracking, in screen coordinates.
+            </summary>
+        </member>
+        <member name="P:WintabDN.CWintabContext.SysExtX">
+            <summary>
+            Specifies the X extent of the screen mapping area for system cursor tracking, in screen coordinates.
+            </summary>
+        </member>
+        <member name="P:WintabDN.CWintabContext.SysExtY">
+            <summary>
+            Specifies the Y extent of the screen mapping area for system cursor tracking, in screen coordinates.
+            </summary>
+        </member>
+        <member name="P:WintabDN.CWintabContext.SysSensX">
+            <summary>
+            Specifies the system-cursor relative-mode sensitivity factor for the x axis.
+            </summary>
+        </member>
+        <member name="P:WintabDN.CWintabContext.SysSensY">
+            <summary>
+            Specifies the system-cursor relative-mode sensitivity factor for the y axis.
+            </summary>
+        </member>
+        <member name="T:WintabDN.EWintabPacketBit">
+            <summary>
+            Wintab Packet bits.
+            </summary>
+        </member>
+        <member name="T:WintabDN.EWintabEventMessage">
+            <summary>
+            Wintab event messsages sent to an application.
+            See Wintab Spec 1.4 for a description of these messages.
+            </summary>
+        </member>
+        <member name="T:WintabDN.EWintabPacketStatusValue">
+            <summary>
+            Wintab packet status values.
+            </summary>
+        </member>
+        <member name="F:WintabDN.EWintabPacketStatusValue.TPS_PROXIMITY">
+            <summary>
+            Specifies that the cursor is out of the context.
+            </summary>
+        </member>
+        <member name="F:WintabDN.EWintabPacketStatusValue.TPS_QUEUE_ERR">
+            <summary>
+            Specifies that the event queue for the context has overflowed.
+            </summary>
+        </member>
+        <member name="F:WintabDN.EWintabPacketStatusValue.TPS_MARGIN">
+            <summary>
+            Specifies that the cursor is in the margin of the context.
+            </summary>
+        </member>
+        <member name="F:WintabDN.EWintabPacketStatusValue.TPS_GRAB">
+            <summary>
+            Specifies that the cursor is out of the context, but that the 
+            context has grabbed input while waiting for a button release event.
+            </summary>
+        </member>
+        <member name="F:WintabDN.EWintabPacketStatusValue.TPS_INVERT">
+            <summary>
+            Specifies that the cursor is in its inverted state.
+            </summary>
+        </member>
+        <member name="T:WintabDN.EWintabPacketButtonCode">
+            <summary>
+            WintabPacket.pkButton codes.
+            </summary>
+        </member>
+        <member name="F:WintabDN.EWintabPacketButtonCode.TBN_NONE">
+            <summary>
+            No change in button state.
+            </summary>
+        </member>
+        <member name="F:WintabDN.EWintabPacketButtonCode.TBN_UP">
+            <summary>
+            Button was released.
+            </summary>
+        </member>
+        <member name="F:WintabDN.EWintabPacketButtonCode.TBN_DOWN">
+            <summary>
+            Button was pressed.
+            </summary>
+        </member>
+        <member name="T:WintabDN.WTOrientation">
+            <summary>
+            Pen Orientation
+            </summary>
+        </member>
+        <member name="F:WintabDN.WTOrientation.orAzimuth">
+            <summary>
+            Specifies the clockwise rotation of the cursor about the 
+            z axis through a full circular range.
+            </summary>
+        </member>
+        <member name="F:WintabDN.WTOrientation.orAltitude">
+            <summary>
+            Specifies the angle with the x-y plane through a signed, semicircular range.  
+            Positive values specify an angle upward toward the positive z axis; negative 
+            values specify an angle downward toward the negative z axis. 
+            </summary>
+        </member>
+        <member name="F:WintabDN.WTOrientation.orTwist">
+            <summary>
+            Specifies the clockwise rotation of the cursor about its own major axis.
+            </summary>
+        </member>
+        <member name="T:WintabDN.WTRotation">
+            <summary>
+            Pen Rotation
+            </summary>
+        </member>
+        <member name="F:WintabDN.WTRotation.rotPitch">
+            <summary>
+            Specifies the pitch of the cursor.
+            </summary>
+        </member>
+        <member name="F:WintabDN.WTRotation.rotRoll">
+            <summary>
+            Specifies the roll of the cursor. 
+            </summary>
+        </member>
+        <member name="F:WintabDN.WTRotation.rotYaw">
+            <summary>
+            Specifies the yaw of the cursor.
+            </summary>
+        </member>
+        <member name="T:WintabDN.WintabPacket">
+            <summary>
+            Wintab data packet.  Contains the "Full Monty" for all possible data values.
+            </summary>
+        </member>
+        <member name="F:WintabDN.WintabPacket.pkContext">
+            <summary>
+            Specifies the context that generated the event.
+            </summary>
+        </member>
+        <member name="F:WintabDN.WintabPacket.pkStatus">
+            <summary>
+            Specifies various status and error conditions. These conditions can be 
+            combined by using the bitwise OR opera-tor. The pkStatus field can be any
+            any combination of the values defined in EWintabPacketStatusValue.
+            </summary>
+        </member>
+        <member name="F:WintabDN.WintabPacket.pkTime">
+            <summary>
+            In absolute mode, specifies the system time at which the event was posted. In
+            relative mode, specifies the elapsed time in milliseconds since the last packet.
+            </summary>
+        </member>
+        <member name="F:WintabDN.WintabPacket.pkChanged">
+            <summary>
+            Specifies which of the included packet data items have changed since the 
+            previously posted event.
+            </summary>
+        </member>
+        <member name="F:WintabDN.WintabPacket.pkSerialNumber">
+            <summary>
+            This is an identifier assigned to the packet by the context. Consecutive 
+            packets will have consecutive serial numbers.
+            </summary>
+        </member>
+        <member name="F:WintabDN.WintabPacket.pkCursor">
+            <summary>
+            Specifies which cursor type generated the packet.
+            </summary>
+        </member>
+        <member name="F:WintabDN.WintabPacket.pkButtons">
+            <summary>
+            In absolute mode, is a UInt32 containing the current button state. 
+            In relative mode, is a UInt32 whose low word contains a button number, 
+            and whose high word contains one of the codes in EWintabPacketButtonCode.
+            </summary>
+        </member>
+        <member name="F:WintabDN.WintabPacket.pkX">
+            <summary>
+            In absolute mode, each is a UInt32 containing the scaled cursor location 
+            along the X axis.  In relative mode, this is an Int32 containing 
+            scaled change in cursor position.
+            </summary>
+        </member>
+        <member name="F:WintabDN.WintabPacket.pkY">
+            <summary>
+            In absolute mode, each is a UInt32 containing the scaled cursor location 
+            along the Y axis.  In relative mode, this is an Int32 containing 
+            scaled change in cursor position.
+            </summary>
+        </member>
+        <member name="F:WintabDN.WintabPacket.pkZ">
+            <summary>
+            In absolute mode, each is a UInt32 containing the scaled cursor location 
+            along the Z axis.  In relative mode, this is an Int32 containing 
+            scaled change in cursor position.
+            </summary>
+        </member>
+        <member name="F:WintabDN.WintabPacket.pkNormalPressure">
+            <summary>
+            In absolute mode, this is a UINT containing the adjusted state  
+            of the normal pressure, respectively. In relative mode, this is
+            an int containing the change in adjusted pressure state.
+            </summary>
+        </member>
+        <member name="F:WintabDN.WintabPacket.pkTangentPressure">
+            <summary>
+            In absolute mode, this is a UINT containing the adjusted state  
+            of the tangential pressure, respectively. In relative mode, this is
+            an int containing the change in adjusted pressure state.
+            </summary>
+        </member>
+        <member name="F:WintabDN.WintabPacket.pkOrientation">
+            <summary>
+            Contains updated cursor orientation information. See the 
+            WTOrientation structure for details.
+            </summary>
+        </member>
+        <member name="T:WintabDN.WTExtensionBase">
+            <summary>
+            Common properties for control extension data transactions.
+            </summary>
+        </member>
+        <member name="F:WintabDN.WTExtensionBase.nContext">
+            <summary>
+            Specifies the Wintab context to which these properties apply.
+            </summary>
+        </member>
+        <member name="F:WintabDN.WTExtensionBase.nStatus">
+            <summary>
+            Status of setting/getting properties.
+            </summary>
+        </member>
+        <member name="F:WintabDN.WTExtensionBase.nTime">
+            <summary>
+            Timestamp applied to property transaction.
+            </summary>
+        </member>
+        <member name="F:WintabDN.WTExtensionBase.nSerialNumber">
+            <summary>
+            Reserved - not used.
+            </summary>
+        </member>
+        <member name="T:WintabDN.WTExpKeyData">
+            <summary>
+            Extension data for one Express Key.
+            </summary>
+        </member>
+        <member name="F:WintabDN.WTExpKeyData.nTablet">
+            <summary>
+            Tablet index where control is found.
+            </summary>
+        </member>
+        <member name="F:WintabDN.WTExpKeyData.nControl">
+            <summary>
+            Zero-based control index.
+            </summary>
+        </member>
+        <member name="F:WintabDN.WTExpKeyData.nLocation">
+            <summary>
+            Zero-based index indicating side of tablet where control found (0 = left, 1 = right).
+            </summary>
+        </member>
+        <member name="F:WintabDN.WTExpKeyData.nReserved">
+            <summary>
+            Reserved - not used
+            </summary>
+        </member>
+        <member name="F:WintabDN.WTExpKeyData.nState">
+            <summary>
+            Indicates Express Key button press (1 = pressed, 0 = released)
+            </summary>
+        </member>
+        <member name="T:WintabDN.WTSliderData">
+            <summary>
+            Extension data for one touch ring or one touch strip.
+            </summary>
+        </member>
+        <member name="F:WintabDN.WTSliderData.nTablet">
+            <summary>
+            Tablet index where control is found.
+            </summary>
+        </member>
+        <member name="F:WintabDN.WTSliderData.nControl">
+            <summary>
+            Zero-based control index.
+            </summary>
+        </member>
+        <member name="F:WintabDN.WTSliderData.nMode">
+            <summary>
+            Zero-based current active mode of control.
+            This is the mode selected by control's toggle button.
+            </summary>
+        </member>
+        <member name="F:WintabDN.WTSliderData.nReserved">
+            <summary>
+            Reserved - not used
+            </summary>
+        </member>
+        <member name="F:WintabDN.WTSliderData.nPosition">
+            <summary>
+            An integer representing the position of the user's finger on the control.
+            When there is no finger on the control, this value is negative.
+            </summary>
+        </member>
+        <member name="T:WintabDN.WintabPacketExt">
+            <summary>
+            Wintab extension data packet for one tablet control.
+            The tablet controls for which extension data is available are: Express Key, Touch Ring and Touch Strip controls.
+            Note that tablets will have either Touch Rings or Touch Strips - not both.
+            All tablets have Express Keys.
+            </summary>
+        </member>
+        <member name="F:WintabDN.WintabPacketExt.pkBase">
+            <summary>
+            Extension control properties common to all control types.
+            </summary>
+        </member>
+        <member name="F:WintabDN.WintabPacketExt.pkExpKey">
+            <summary>
+            Extension data for one Express Key.
+            </summary>
+        </member>
+        <member name="F:WintabDN.WintabPacketExt.pkTouchStrip">
+            <summary>
+            Extension data for one Touch Strip.
+            </summary>
+        </member>
+        <member name="F:WintabDN.WintabPacketExt.pkTouchRing">
+            <summary>
+            Extension data for one Touch Ring.
+            </summary>
+        </member>
+        <member name="T:WintabDN.CWintabData">
+            <summary>
+            Class to support capture and management of Wintab daa.
+            </summary>
+        </member>
+        <member name="M:WintabDN.CWintabData.#ctor(WintabDN.CWintabContext)">
+            <summary>
+            CWintabData constructor
+            </summary>
+            <param name="context_I">logical context for this data object</param>
+        </member>
+        <member name="M:WintabDN.CWintabData.Init(WintabDN.CWintabContext)">
+            <summary>
+            Initialize this data object.
+            </summary>
+            <param name="context_I">logical context for this data object</param>
+        </member>
+        <member name="M:WintabDN.CWintabData.SetWTPacketEventHandler(System.EventHandler{WintabDN.MessageReceivedEventArgs})">
+            <summary>
+            Set the handler to be called when WT_PACKET events are received.
+            </summary>
+            <param name="handler_I">WT_PACKET event handler supplied by the client.</param>
+        </member>
+        <member name="M:WintabDN.CWintabData.SetPacketQueueSize(System.UInt32)">
+            <summary>
+            Set packet queue size for this data object's context.
+            </summary>
+            <param name="numPkts_I">desired #packets in queue</param>
+            <returns>Returns true if operation successful</returns>
+        </member>
+        <member name="M:WintabDN.CWintabData.GetPacketQueueSize">
+            <summary>
+            Get packet queue size for this data object's context.
+            </summary>
+            <returns>Returns a packet queue size in #packets or 0 if fails</returns>
+        </member>
+        <member name="M:WintabDN.CWintabData.GetDataPacketExt(WintabDN.HCTX,System.UInt32)">
+            <summary>
+            Returns one packet of WintabPacketExt data from the packet queue.
+            </summary>
+            <param name="hCtx_I">Wintab context to be used when asking for the data</param>
+            <param name="pktID_I">Identifier for the tablet event packet to return.</param>
+            <returns>Returns a data packet with non-null context if successful.</returns>
+        </member>
+        <member name="M:WintabDN.CWintabData.GetDataPacket(System.UInt32)">
+            <summary>
+            Returns one packet of WintabPacket data from the packet queue. (Deprecated)
+            </summary>
+            <param name="pktID_I">Identifier for the tablet event packet to return.</param>
+            <returns>Returns a data packet with non-null context if successful.</returns>
+        </member>
+        <member name="M:WintabDN.CWintabData.GetDataPacket(WintabDN.HCTX,System.UInt32)">
+            <summary>
+            Returns one packet of Wintab data from the packet queue.
+            </summary>
+            <param name="hCtx_I">Wintab context to be used when asking for the data</param>
+            <param name="pktID_I">Identifier for the tablet event packet to return.</param>
+            <returns>Returns a data packet with non-null context if successful.</returns>
+        </member>
+        <member name="M:WintabDN.CWintabData.FlushDataPackets(System.UInt32)">
+            <summary>
+            Removes all pending data packets from the context's queue.
+            </summary>
+        </member>
+        <member name="M:WintabDN.CWintabData.GetDataPackets(System.UInt32,System.Boolean,System.UInt32@)">
+            <summary>
+            Returns an array of Wintab data packets from the packet queue.
+            </summary>
+            <param name="maxPkts_I">Specifies the maximum number of packets to return.</param>
+            <param name="remove_I">If true, returns data packets and removes them from the queue.</param>
+            <param name="numPkts_O">Number of packets actually returned.</param>
+            <returns>Returns the next maxPkts_I from the list.  Note that if remove_I is false, then 
+            repeated calls will return the same packets.  If remove_I is true, then packets will be 
+            removed and subsequent calls will get different packets (if any).</returns>
+        </member>
+        <member name="M:WintabDN.CWintabData.CheckForValidHCTX(System.String)">
+            <summary>
+            Throws exception if logical context for this data object is zero.
+            </summary>
+        </member>
+        <member name="T:WintabDN.CWintabInfo">
+            <summary>
+            Class to access Wintab interface data.
+            </summary>
+        </member>
+        <member name="M:WintabDN.CWintabInfo.IsWintabAvailable">
+            <summary>
+            Returns TRUE if Wintab service is running and responsive.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WintabDN.CWintabInfo.GetDeviceInfo">
+            <summary>
+            Returns a string containing device name.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WintabDN.CWintabInfo.GetDefaultDigitizingContext(WintabDN.ECTXOptionValues)">
+            <summary>
+            Returns the default digitizing context, with useful context overrides. 
+            </summary>
+            <param name="options_I">caller's options; OR'd into context options</param>
+            <returns>A valid context object or null on error.</returns>
+        </member>
+        <member name="M:WintabDN.CWintabInfo.GetDefaultSystemContext(WintabDN.ECTXOptionValues)">
+            <summary>
+            Returns the default system context, with useful context overrides.
+            </summary>
+            <param name="options_I">caller's options; OR'd into context options</param>
+            <returns>A valid context object or null on error.</returns>
+        </member>
+        <member name="M:WintabDN.CWintabInfo.GetDefaultContext(WintabDN.EWTICategoryIndex)">
+            <summary>
+            Helper function to get digitizing or system default context.
+            </summary>
+            <param name="contextType_I">Use WTI_DEFCONTEXT for digital context or WTI_DEFSYSCTX for system context</param>
+            <returns>Returns the default context or null on error.</returns>
+        </member>
+        <member name="M:WintabDN.CWintabInfo.GetDefaultDeviceIndex">
+            <summary>
+            Returns the default device.  If this value is -1, then it also known as a "virtual device".
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WintabDN.CWintabInfo.GetDeviceAxis(System.Int32,WintabDN.EAxisDimension)">
+            <summary>
+            Returns the WintabAxis object for specified device and dimension.
+            </summary>
+            <param name="devIndex_I">Device index (-1 = virtual device)</param>
+            <param name="dim_I">Dimension: AXIS_X, AXIS_Y or AXIS_Z</param>
+            <returns></returns>
+        </member>
+        <member name="M:WintabDN.CWintabInfo.GetDeviceOrientation(System.Boolean@)">
+            <summary>
+            Returns a 3-element array describing the tablet's orientation range and resolution capabilities.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WintabDN.CWintabInfo.GetDeviceRotation(System.Boolean@)">
+            <summary>
+            Returns a 3-element array describing the tablet's rotation range and resolution capabilities
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WintabDN.CWintabInfo.GetNumberOfDevices">
+            <summary>
+            Returns the number of devices connected.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WintabDN.CWintabInfo.IsStylusActive">
+            <summary>
+            Returns whether a stylus is currently connected to the active cursor.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WintabDN.CWintabInfo.GetStylusName(WintabDN.EWTICursorNameIndex)">
+            <summary>
+            Returns a string containing the name of the selected stylus. 
+            </summary>
+            <param name="index_I">indicates stylus type</param>
+            <returns></returns>
+        </member>
+        <member name="M:WintabDN.CWintabInfo.GetMaxPressure(System.Boolean)">
+            <summary>
+            Return max normal pressure supported by tablet.
+            </summary>
+            <param name="getNormalPressure_I">TRUE=> normal pressure; 
+            FALSE=> tangential pressure (not supported on all tablets)</param>
+            <returns>maximum pressure value or zero on error</returns>
+        </member>
+        <member name="M:WintabDN.CWintabInfo.GetTabletAxis(WintabDN.EAxisDimension)">
+            <summary>
+            Return the WintabAxis object for the specified dimension.
+            </summary>
+            <param name="dimension_I">Dimension to fetch (eg: x, y)</param>
+            <returns></returns>
+        </member>
+        <member name="T:WintabDN.MessageReceivedEventArgs">
+            <summary>
+            Support for registering a Native Windows message with MessageEvents class.
+            </summary>
+        </member>
+        <member name="M:WintabDN.MessageReceivedEventArgs.#ctor(System.Windows.Forms.Message)">
+            <summary>
+            MessageReceivedEventArgs constructor.
+            </summary>
+            <param name="message">Native windows message to be registered.</param>
+        </member>
+        <member name="P:WintabDN.MessageReceivedEventArgs.Message">
+            <summary>
+            Return native Windows message handled by this object.
+            </summary>
+        </member>
+        <member name="T:WintabDN.MessageEvents">
+            <summary>
+            Windows native message handler, to provide support for detecting and
+            responding to Wintab messages. 
+            </summary>
+        </member>
+        <member name="E:WintabDN.MessageEvents.MessageReceived">
+            <summary>
+            MessageEvents delegate.
+            </summary>
+        </member>
+        <member name="M:WintabDN.MessageEvents.WatchMessage(System.Int32)">
+            <summary>
+            Registers to receive the specified native Windows message.
+            </summary>
+            <param name="message">Native Windows message to watch for.</param>
+        </member>
+        <member name="P:WintabDN.MessageEvents.WindowHandle">
+            <summary>
+            Returns the MessageEvents native Windows handle.
+            </summary>
+        </member>
+    </members>
+</doc>
