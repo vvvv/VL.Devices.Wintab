@@ -6,7 +6,7 @@
     <title>VL.Devices.WinTab</title>
     <authors>vvvv, Hayden Anyasi</authors>
     <owners>vvvv</owners>
-    <projectUrl>https://github.com/chaupow/VL.Devices.WinTab</projectUrl>
+    <projectUrl>https://github.com/vvvv/VL.Devices.WinTab</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <summary>A set of nodes to use WinTab devices with VL</summary>
     <description>WinTab for VL</description>
