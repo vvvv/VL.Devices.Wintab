@@ -445,10 +445,10 @@
       </p:NodeReference>
       <Patch Id="CbmCEc8TgRFN8z3ZGjw62M">
         <Canvas Id="FCiyKulnoPrL6QSH6cKXO5" CanvasType="Group">
-          <Node Bounds="230,238,-110,19" Id="Q4ajxE2NyZzQUPOKmjl69R">
+          <Node Bounds="231,238,45,19" Id="Q4ajxE2NyZzQUPOKmjl69R">
             <p:NodeReference LastCategoryFullName="Devices.WinTab" LastSymbolSource="VL.Devices.WinTab.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-              <Choice Kind="ProcessNode" Name="Tablet (Reactive)" />
+              <Choice Kind="ProcessAppFlag" Name="Tablet (Reactive)" />
             </p:NodeReference>
             <Pin Id="P1mN3My1LYTLCLiACaRUt7" Name="Exclusive" Kind="InputPin" />
             <Pin Id="HQ3csKhb0e8QHcr2OnoVwe" Name="Enabled" Kind="InputPin" />
@@ -456,7 +456,7 @@
             <Pin Id="AHUo9hnMXTfNnCJYfVoBlG" Name="Device Name" Kind="OutputPin" />
             <Pin Id="EkEpf1Cw4yQOHRwq8e0N4P" Name="WinTab Available" Kind="OutputPin" />
           </Node>
-          <Pad Id="JgAymIGzavuLfOE4p0Hg6l" Comment="Device Name" Bounds="292,310,87,15" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="JgAymIGzavuLfOE4p0Hg6l" Comment="Device Name" Bounds="293,310,87,15" ShowValueBox="true" isIOBox="true" />
           <Node Bounds="231,349,65,19" Id="Q7OZVGSXTGfOV4NQC9PwkW">
             <p:NodeReference LastCategoryFullName="Reactive" LastSymbolSource="VL.Reactive.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
@@ -467,7 +467,7 @@
             <Pin Id="H42U1j8sPwnPGKKOMJionh" Name="Value" Kind="OutputPin" />
             <Pin Id="MzC20DYv7j5MBuuZMOJDdV" Name="On Data" Kind="OutputPin" />
           </Node>
-          <Node Bounds="230,409,55,26" Id="Egszb0FXt2mLDai0LiKf3K">
+          <Node Bounds="231,409,125,26" Id="Egszb0FXt2mLDai0LiKf3K">
             <p:NodeReference LastCategoryFullName="Devices.WinTab.TabletData" LastSymbolSource="VL.Devices.WinTab.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <CategoryReference Kind="RecordType" Name="TabletData" />
@@ -475,13 +475,16 @@
             </p:NodeReference>
             <Pin Id="MdpQKHPrBpYOgc10xngzn6" Name="Input" Kind="StateInputPin" />
             <Pin Id="CGiTsVBC7zjLFfpCUSUicG" Name="Position" Kind="OutputPin" />
+            <Pin Id="Vhyks9WACWsMdBhKXSA4TS" Name="Z" Kind="OutputPin" />
             <Pin Id="Mp4F2QuaIx4LCJTQ0R5Cmh" Name="Pressure" Kind="OutputPin" />
-            <Pin Id="Vhyks9WACWsMdBhKXSA4TS" Name="Distance" Kind="OutputPin" />
+            <Pin Id="V4k4tUP2QpdOWg17YlYW1d" Name="Tangent Pressure" Kind="OutputPin" />
             <Pin Id="SGh9k6of8rlNsPbq17pXIl" Name="Orientation" Kind="OutputPin" />
+            <Pin Id="BeqeQBgK7PuNvoCbtkWoUS" Name="Buttons" Kind="OutputPin" />
+            <Pin Id="PVe8XfgVQw0PWCsHPHQRpX" Name="Stylus" Kind="OutputPin" />
           </Node>
-          <Pad Id="LXlAcnNOg66OkDgBKhIWMI" Comment="Position" Bounds="172,541,42,28" ShowValueBox="true" isIOBox="true" />
-          <Pad Id="KsqOPeq00SVNsCIddMnoVY" Comment="Orientation" Bounds="401,472,40,43" ShowValueBox="true" isIOBox="true" />
-          <Node Bounds="272,711,145,19" Id="SVlqCXW2wd2OJk3z40w362">
+          <Pad Id="LXlAcnNOg66OkDgBKhIWMI" Comment="Position" Bounds="91,519,42,28" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="KsqOPeq00SVNsCIddMnoVY" Comment="Orientation" Bounds="364,484,40,43" ShowValueBox="true" isIOBox="true" />
+          <Node Bounds="211,685,145,19" Id="SVlqCXW2wd2OJk3z40w362">
             <p:NodeReference LastCategoryFullName="Graphics.Skia" LastSymbolSource="VL.Skia.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="Renderer" />
@@ -502,8 +505,8 @@
             <Pin Id="LfHwatn3KSmL5BO832RMrF" Name="ClientBounds" Kind="OutputPin" />
             <Pin Id="EU5O84EMbEJPcmnuRTzCHF" Name="Render Time" Kind="OutputPin" />
           </Node>
-          <Pad Id="Ge2X5eCz45ONkUFUr9LAcK" Comment="Pressure" Bounds="329,537,35,15" ShowValueBox="true" isIOBox="true" />
-          <Node Bounds="292,647,85,19" Id="GPXjBveXWDmOG92hE9SgR9">
+          <Pad Id="Ge2X5eCz45ONkUFUr9LAcK" Comment="Pressure" Bounds="249,507,35,15" ShowValueBox="true" isIOBox="true" />
+          <Node Bounds="231,621,85,19" Id="GPXjBveXWDmOG92hE9SgR9">
             <p:NodeReference LastCategoryFullName="Graphics.Skia.Layers" LastSymbolSource="VL.Skia.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="Circle" />
@@ -515,17 +518,21 @@
             <Pin Id="H6F8mel5GYWNNFMQueTvWZ" Name="Enabled" Kind="InputPin" />
             <Pin Id="PygapyxktGoNKo5AKUcJ18" Name="Output" Kind="OutputPin" />
           </Node>
-          <Pad Id="PjQoCkcRc4RLrEqAXbmR2j" Comment="Enabled" Bounds="352,171,35,35" ShowValueBox="true" isIOBox="true" Value="True">
+          <Pad Id="PjQoCkcRc4RLrEqAXbmR2j" Comment="Enabled" Bounds="353,171,35,35" ShowValueBox="true" isIOBox="true" Value="True">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
               <Choice Kind="TypeFlag" Name="Boolean" />
             </p:TypeAnnotation>
           </Pad>
-          <Pad Id="U2e4Z06Vs9bPVgd7DzqZWs" Comment="Exclusive" Bounds="232,171,35,35" ShowValueBox="true" isIOBox="true" Value="True">
+          <Pad Id="U2e4Z06Vs9bPVgd7DzqZWs" Comment="Exclusive" Bounds="233,171,35,35" ShowValueBox="true" isIOBox="true" Value="True">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
               <Choice Kind="TypeFlag" Name="Boolean" />
             </p:TypeAnnotation>
           </Pad>
-          <Pad Id="BSgRcPhEA8pOuHF5EB2mhS" Comment="WinTab Available" Bounds="352,280,35,15" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="BSgRcPhEA8pOuHF5EB2mhS" Comment="WinTab Available" Bounds="353,280,35,15" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="OoCO2oznA9EP9lb9lXFnUE" Comment="Z" Bounds="251,478,35,15" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="H0l07a0ED4ENCqUXBfzFkd" Comment="Stylus" Bounds="599,481,93,14" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="MhnwseuXhJnLsNRX854i8P" Comment="Buttons" Bounds="487,484,35,65" ShowValueBox="true" isIOBox="true" Value="False" />
+          <Pad Id="OieODVMCJqjMYXzK6QhdUk" Comment="Tangent Pressure" Bounds="248,538,35,15" ShowValueBox="true" isIOBox="true" />
         </Canvas>
         <Patch Id="AIU1fqkb85gOSpZ8jP9qWA" Name="Create" />
         <Patch Id="U33htoL9A41Nlv2WxeWMaY" Name="Update" />
@@ -543,8 +550,12 @@
         <Link Id="SEXB2cJVyQ2N4OB26RAYVk" Ids="Mp4F2QuaIx4LCJTQ0R5Cmh,DD0wK3xzEyEPhTb1UGjd4i" />
         <Link Id="SN8PeJzYPoRPndIr9qU1jq" Ids="PygapyxktGoNKo5AKUcJ18,V2HVyGioOk7OCfxZ6g7CLt" />
         <Link Id="QntRbi7fdhaM3eUUFeODrz" Ids="PjQoCkcRc4RLrEqAXbmR2j,HQ3csKhb0e8QHcr2OnoVwe" />
-        <Link Id="UrOCLH4xhpEL4Cq06tXkWQ" Ids="U2e4Z06Vs9bPVgd7DzqZWs,P1mN3My1LYTLCLiACaRUt7" />
         <Link Id="ByqVuZqZHi2LxknGsCMQq2" Ids="EkEpf1Cw4yQOHRwq8e0N4P,BSgRcPhEA8pOuHF5EB2mhS" />
+        <Link Id="Kir0YkYQYq9M9p5hJxAIUC" Ids="Vhyks9WACWsMdBhKXSA4TS,OoCO2oznA9EP9lb9lXFnUE" />
+        <Link Id="KbrajuPGno2MyKTRhlYg9G" Ids="PVe8XfgVQw0PWCsHPHQRpX,H0l07a0ED4ENCqUXBfzFkd" />
+        <Link Id="NfDg7NROncjOAGW4dXR7sB" Ids="U2e4Z06Vs9bPVgd7DzqZWs,P1mN3My1LYTLCLiACaRUt7" />
+        <Link Id="PmsR5HmRvP3QdbMvQigK97" Ids="BeqeQBgK7PuNvoCbtkWoUS,MhnwseuXhJnLsNRX854i8P" />
+        <Link Id="GOhVDHlNnemQXxG3IKO6CB" Ids="V4k4tUP2QpdOWg17YlYW1d,OieODVMCJqjMYXzK6QhdUk" />
       </Patch>
     </Node>
   </Patch>
