@@ -451,7 +451,11 @@
               <Choice Kind="ProcessAppFlag" Name="Tablet (Reactive)" />
             </p:NodeReference>
             <Pin Id="P1mN3My1LYTLCLiACaRUt7" Name="Exclusive" Kind="InputPin" />
-            <Pin Id="HQ3csKhb0e8QHcr2OnoVwe" Name="Enabled" Kind="InputPin" />
+            <Pin Id="HQ3csKhb0e8QHcr2OnoVwe" Name="Enabled" Kind="InputPin" DefaultValue="False">
+              <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+                <Choice Kind="TypeFlag" Name="Boolean" />
+              </p:TypeAnnotation>
+            </Pin>
             <Pin Id="S6cOQv4HTrlLpYBr4ZAnwJ" Name="Output" Kind="OutputPin" />
             <Pin Id="AHUo9hnMXTfNnCJYfVoBlG" Name="Device Name" Kind="OutputPin" />
             <Pin Id="EkEpf1Cw4yQOHRwq8e0N4P" Name="WinTab Available" Kind="OutputPin" />
@@ -518,7 +522,7 @@
             <Pin Id="H6F8mel5GYWNNFMQueTvWZ" Name="Enabled" Kind="InputPin" />
             <Pin Id="PygapyxktGoNKo5AKUcJ18" Name="Output" Kind="OutputPin" />
           </Node>
-          <Pad Id="PjQoCkcRc4RLrEqAXbmR2j" Comment="Enabled" Bounds="306,195,35,35" ShowValueBox="true" isIOBox="true" Value="True">
+          <Pad Id="PjQoCkcRc4RLrEqAXbmR2j" Comment="Enabled" Bounds="304,193,35,35" ShowValueBox="true" isIOBox="true" Value="True">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
               <Choice Kind="TypeFlag" Name="Boolean" />
             </p:TypeAnnotation>
@@ -531,7 +535,7 @@
           <Pad Id="BSgRcPhEA8pOuHF5EB2mhS" Comment="WinTab Available" Bounds="427,284,35,15" ShowValueBox="true" isIOBox="true" />
           <Pad Id="OoCO2oznA9EP9lb9lXFnUE" Comment="Z" Bounds="165,332,35,15" ShowValueBox="true" isIOBox="true" />
           <Pad Id="H0l07a0ED4ENCqUXBfzFkd" Comment="Stylus" Bounds="431,389,93,15" ShowValueBox="true" isIOBox="true" />
-          <Pad Id="MhnwseuXhJnLsNRX854i8P" Comment="Buttons" Bounds="319,392,35,65" ShowValueBox="true" isIOBox="true" Value="False" />
+          <Pad Id="MhnwseuXhJnLsNRX854i8P" Comment="Buttons" Bounds="320,388,35,65" ShowValueBox="true" isIOBox="true" Value="False" />
           <Pad Id="OieODVMCJqjMYXzK6QhdUk" Comment="Tangent Pressure" Bounds="165,392,35,15" ShowValueBox="true" isIOBox="true" />
           <Node Bounds="106,592,44,19" Id="GunhyDbyx85Mfh57C07LXF">
             <p:NodeReference LastCategoryFullName="Graphics.Skia" LastSymbolSource="VL.Skia.vl">
@@ -617,8 +621,17 @@
             <Pin Id="Cb1vSE4OuECPkxoFYcOnuT" Name="WinTab Available" Kind="OutputPin" />
           </Node>
           <Pad Id="AzI1x82PfnqO0lS8RS2ctH" Comment="Position" Bounds="35,331,35,28" ShowValueBox="true" isIOBox="true" />
-          <Pad Id="UJ7ihm4zxAZMkHRjM7VLdN" Bounds="699,174,209,75" ShowValueBox="true" isIOBox="true" Value="The reactive version of the Tablet gives you access to the high framerate, the devices streams its data in">
+          <Pad Id="UJ7ihm4zxAZMkHRjM7VLdN" Bounds="696,160,209,75" ShowValueBox="true" isIOBox="true" Value="The reactive version of the Tablet gives you access to the high framerate, the devices streams its data in">
             <p:TypeAnnotation>
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="Tbe0tEwdVhbLpdIy1XOwQN" Bounds="477,82,149,88" ShowValueBox="true" isIOBox="true" Value="NOTE:&#xD;&#xA;Only one tablet node will work at a time!">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
               <Choice Kind="TypeFlag" Name="String" />
             </p:TypeAnnotation>
             <p:ValueBoxSettings>
@@ -651,10 +664,10 @@
         <Link Id="ORTMewbfxaGOXrsp72d2NF" Ids="K9scOR0v52tL1FjbM5v2h2,H0l07a0ED4ENCqUXBfzFkd" />
         <Link Id="T0idliwmbvtOzoJHVR6JI4" Ids="VQhmkkQ0qb3OXzpsece4r0,JgAymIGzavuLfOE4p0Hg6l" />
         <Link Id="PGNvDr6pjWsMPh3nfTXQF5" Ids="Cb1vSE4OuECPkxoFYcOnuT,BSgRcPhEA8pOuHF5EB2mhS" />
-        <Link Id="F2IR5fLd8TPPwqG5bsvD3E" Ids="U2e4Z06Vs9bPVgd7DzqZWs,OQI1zQPkbPuLkbN923sqzI" />
         <Link Id="SOf9mCRLFTdM2Rd1ljLPG2" Ids="PjQoCkcRc4RLrEqAXbmR2j,NqWlQHXAisCMF6PGh30Fgp" />
         <Link Id="TZ5j3I3YwXMNwc0dmiyJ6B" Ids="NKPkbLLbqadP12CYIIlcAa,AzI1x82PfnqO0lS8RS2ctH" />
         <Link Id="DoJWdrwoGXDPUxPVUWLlq6" Ids="GT576774BPKNWhB3mVj9x1,DD0wK3xzEyEPhTb1UGjd4i" />
+        <Link Id="DDraS7Ug61uPnRRYrZOnw0" Ids="U2e4Z06Vs9bPVgd7DzqZWs,OQI1zQPkbPuLkbN923sqzI" />
       </Patch>
     </Node>
   </Patch>
