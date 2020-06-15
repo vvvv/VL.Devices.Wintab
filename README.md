@@ -1,5 +1,5 @@
-# VL.Devices.WinTab
-A set of VL nodes for using WinTab devices
+# VL.Devices.Wintab
+A set of VL nodes for using Wintab devices
 
 Try it with vvvv, the visual live-programming environment for .NET  
 Download: http://visualprogramming.net
